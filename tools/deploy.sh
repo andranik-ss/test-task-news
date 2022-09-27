@@ -12,7 +12,4 @@ rm -rf $DIR_PATH*
 echo $CYAN → Copy new build to serve dir $NORMAL
 cp -r ./build/* $DIR_PATH
 
-# echo $CYAN → Deploy app to firebase hosting $NORMAL
-# npx firebase deploy
-
 echo $GREEN → Done $NORMAL
