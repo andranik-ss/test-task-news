@@ -1,0 +1,28 @@
+.layout {
+  position: relative;
+
+  background: #242525;
+
+  display: flex;
+  justify-content: center;
+
+  min-height: 100%;
+  width: 100%;
+}
+
+.content {
+  max-width: 1440px;
+  padding: 20px 30px;
+
+  flex: 1 0;
+
+  overflow: auto;
+  
+  display: grid;
+
+  grid-template-columns: auto;
+  grid-template-rows: [app-bar] 60px [content] auto;
+  grid-template-areas:
+    'app-bar'
+    'content';
+}
