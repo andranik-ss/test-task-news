@@ -10,7 +10,6 @@ import {
 } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
 import { News } from './types';
-import data from './data.json';
 
 interface BookmarkedNews {
   id: News['id'];
@@ -38,18 +37,12 @@ const initialState: NewsState = newsAdapter.getInitialState({
 });
 
 export const fetchNews = createAsyncThunk('news/getNews', async () => {
-  const delay = (ms: number) =>
-    new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-
-  await delay(300);
-
-  return data as News[];
-  // return fetch('https://finnhub.io/api/v1/company-news?symbol=AAPL&from=2022-09-23&to=2022-09-26&token=c5g3koaad3id0d5nn48g').then((response) => {
-  //   const res = response.json() as unknown;
-  //   return res as News[];
-  // });
+  return fetch(
+    'https://finnhub.io/api/v1/company-news?symbol=AAPL&from=2022-09-23&to=2022-09-26&token=c5g3koaad3id0d5nn48g',
+  ).then((response) => {
+    const res = response.json() as unknown;
+    return res as News[];
+  });
 });
 
 export const newsSlice = createSlice({
