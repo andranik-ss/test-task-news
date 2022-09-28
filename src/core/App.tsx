@@ -1,8 +1,7 @@
-import React from 'react';
-import { ThemeProvider } from '@mui/material'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material'
 import { News, Bookmarks } from '../features/news';
-import { NotFound, Layout } from '../components';
+import { NotFound, Layout } from 'components';
 import { theme } from './theme';
 
 const ROUTES = {

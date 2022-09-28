@@ -2,11 +2,12 @@ import { useMemo, useState } from 'react';
 
 export type PaginatedList<T> = { [pageIndex: number]: T[] };
 
-export const COUNT = 6;
+export const INITIAL_SHOW_COUNT = 6;
+export const INITIAL_PAGE_INDEX = 1;
 
-export function usePagination<T>(list: Array<T>, initialCount = COUNT) {
+export function usePagination<T>(list: Array<T>, initialCount = INITIAL_SHOW_COUNT) {
   const [count, setCount] = useState(initialCount);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(INITIAL_PAGE_INDEX);
 
   const { paginatedList, totalCount } = useMemo(() => {
     let index = 0;
@@ -21,18 +22,19 @@ export function usePagination<T>(list: Array<T>, initialCount = COUNT) {
       return res;
     }, initialResult);
 
+    setPage(INITIAL_PAGE_INDEX)
+
     return {
       paginatedList,
       totalCount: Object.keys(paginatedList).length,
     };
   }, [list, count]);
-
+  
   return {
     list: paginatedList[page] || [],
     count: {
       value: count,
       total: totalCount,
-      // return setCount if need to change show count
       onChange: setCount,
     },
     page: {

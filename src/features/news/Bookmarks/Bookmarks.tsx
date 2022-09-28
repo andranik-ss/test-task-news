@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { NavLinks, AppBar, Search, CustomPagination } from '../../../components';
-import NewsCard from '../NewsCard';
-import { useFormInput, usePagination, useSearchByNews } from '../../../hooks';
-import { useAppDispatch, useAppSelector } from '../../../store';
-import { getNews, selectBookmarkedNews } from '../newsSlice';
 import { Box } from '@mui/material';
+
+import { useFormInput, usePagination, useSearchByNews } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'store';
+import { NavLinks, AppBar, Search, CustomPagination } from 'components';
+import NewsCard from '../NewsCard';
+import { getNews, selectBookmarkedNews } from '../newsSlice';
 
 function Bookmarks() {
   const search = useFormInput();

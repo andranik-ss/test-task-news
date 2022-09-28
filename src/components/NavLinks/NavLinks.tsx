@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Typography } from '@mui/material';
-import './NavLinks.css';
+import { Box, Typography } from '@mui/material';
 
 const links = ['news', 'bookmarks'];
 
@@ -8,12 +7,12 @@ export function NavLinks() {
   const location = useLocation();
 
   return (
-    <div className="nav-links">
+    <Box sx={{ display: 'flex', gap: '1em' }}>
       {links.map((link) => (
         <Typography
           key={link}
           component={Link}
-          to={link}
+          to={`/${link}`}
           variant="h2"
           align="left"
           sx={{
@@ -28,6 +27,6 @@ export function NavLinks() {
           {link}
         </Typography>
       ))}
-    </div>
+    </Box>
   );
 }

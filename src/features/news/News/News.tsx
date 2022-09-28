@@ -1,11 +1,13 @@
 import { useEffect, useMemo } from 'react';
-import { NavLinks, AppBar, Search, CustomPagination } from '../../../components';
-import NewsCard from '../NewsCard';
-import { useFormInput, usePagination, useSearchByNews } from '../../../hooks';
-import { useAppDispatch, useAppSelector } from '../../../store';
-import { getNews, selectAllNews } from '../newsSlice';
-import './News.css';
+
+import { NavLinks, AppBar, Search, CustomPagination } from 'components';
+import { useFormInput, usePagination, useSearchByNews } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'store';
 import { excludeLatestItemFromArray, getLatestItemFromArray } from 'utils';
+import NewsCard from '../NewsCard';
+import { getNews, selectAllNews } from '../newsSlice';
+
+import './News.css';
 
 function News() {
   const search = useFormInput();
