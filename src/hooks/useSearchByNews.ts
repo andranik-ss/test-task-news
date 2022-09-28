@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { News } from '../features/news/types';
+import { News } from '../api';
 
 export function useSearchByNews(newsList: News[], query: string): News[] {
   return useMemo(() => {

@@ -9,7 +9,7 @@ import {
   createSelector,
 } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
-import { News } from './types';
+import { News, fetchNews } from '../../api';
 
 interface BookmarkedNews {
   id: News['id'];
@@ -36,14 +36,7 @@ const initialState: NewsState = newsAdapter.getInitialState({
   status: 'idle',
 });
 
-export const fetchNews = createAsyncThunk('news/getNews', async () => {
-  return fetch(
-    'https://finnhub.io/api/v1/company-news?symbol=AAPL&from=2022-09-23&to=2022-09-26&token=c5g3koaad3id0d5nn48g',
-  ).then((response) => {
-    const res = response.json() as unknown;
-    return res as News[];
-  });
-});
+export const getNews = createAsyncThunk('news/getNews', fetchNews);
 
 export const newsSlice = createSlice({
   name: 'news',
@@ -59,7 +52,7 @@ export const newsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchNews.fulfilled, (state, { payload }) => {
+      .addCase(getNews.fulfilled, (state, { payload }) => {
         newsAdapter.setAll(state, payload);
         state.status = 'idle';
       })

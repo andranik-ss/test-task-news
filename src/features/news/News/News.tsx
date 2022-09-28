@@ -3,7 +3,7 @@ import { NavLinks, AppBar, Search, CustomPagination } from '../../../components'
 import NewsCard from '../NewsCard';
 import { useFormInput, usePagination, useSearchByNews } from '../../../hooks';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { fetchNews, selectAllNews } from '../newsSlice';
+import { getNews, selectAllNews } from '../newsSlice';
 import './News.css';
 
 function News() {
@@ -12,7 +12,7 @@ function News() {
   const allNews = useAppSelector(selectAllNews);
 
   useEffect(() => {
-    dispatch(fetchNews()).catch(console.error);
+    dispatch(getNews()).catch(console.error);
   }, [dispatch]);
 
   const [latestNews, ...newsList] = useSearchByNews(allNews, search.value);

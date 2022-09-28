@@ -3,7 +3,7 @@ import { NavLinks, AppBar, Search, CustomPagination } from '../../../components'
 import NewsCard from '../NewsCard';
 import { useFormInput, usePagination, useSearchByNews } from '../../../hooks';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { fetchNews, selectBookmarkedNews } from '../newsSlice';
+import { getNews, selectBookmarkedNews } from '../newsSlice';
 import { Box } from '@mui/material';
 
 function Bookmarks() {
@@ -12,7 +12,7 @@ function Bookmarks() {
   const news = useAppSelector(selectBookmarkedNews);
 
   useEffect(() => {
-    dispatch(fetchNews()).catch(console.error);
+    dispatch(getNews()).catch(console.error);
   }, [dispatch]);
 
   const newsList = useSearchByNews(news, search.value);
