@@ -24,7 +24,7 @@ export interface NewsState {
 
 const newsAdapter = createEntityAdapter<News>({
   selectId: (item) => item.id,
-  sortComparer: (prev, next) => next.datetime - prev.datetime,
+  sortComparer: (prev, next) => prev.datetime - next.datetime,
 });
 
 const bookmarksAdapter = createEntityAdapter<BookmarkedNews>({

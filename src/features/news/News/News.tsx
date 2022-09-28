@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { NavLinks, AppBar, Search, CustomPagination } from '../../../components';
 import NewsCard from '../NewsCard';
 import { useFormInput, usePagination, useSearchByNews } from '../../../hooks';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { getNews, selectAllNews } from '../newsSlice';
 import './News.css';
+import { excludeLatestItemFromArray, getLatestItemFromArray } from 'utils';
 
 function News() {
   const search = useFormInput();
@@ -15,8 +16,12 @@ function News() {
     dispatch(getNews()).catch(console.error);
   }, [dispatch]);
 
-  const [latestNews, ...newsList] = useSearchByNews(allNews, search.value);
-  const { list, count, page } = usePagination(newsList.reverse());
+  const filteredNews = useSearchByNews(allNews, search.value);
+  const [latestNews, newsList] = useMemo(
+    () => [getLatestItemFromArray(filteredNews), excludeLatestItemFromArray(filteredNews)],
+    [filteredNews],
+  );
+  const { list, count, page } = usePagination(newsList);
 
   return (
     <>

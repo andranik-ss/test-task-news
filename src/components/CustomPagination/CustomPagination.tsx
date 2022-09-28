@@ -16,7 +16,7 @@ interface CustomPaginationProps {
   possibleItemsCount?: number[];
 }
 
-const defaultItemsCount = [6, 9, 12];
+const defaultItemsCount = [6];
 
 export function CustomPagination({
   count,
