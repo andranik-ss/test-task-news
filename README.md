@@ -1,7 +1,7 @@
-# The application is available at [stand](https://news.simomyan.org)
+# The application is available at [stand](https://news.simonyan.org)
 
 The production version of this project has been deployed on the server. 
-You can find it by the [link](https://news.simomyan.org) or run the project locally using [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
+You can find it by the [link](https://news.simonyan.org) or run the project locally using [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
 
 # Getting Started with Create React App
 
