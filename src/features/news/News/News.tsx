@@ -15,7 +15,13 @@ function News() {
   const allNews = useAppSelector(selectAllNews);
 
   useEffect(() => {
-    dispatch(getNews()).catch(console.error);
+    dispatch(
+      getNews({
+        symbol: 'AAPL',
+        from: '2022-09-23',
+        to: '2022-09-26',
+      }),
+    ).catch(console.error);
   }, [dispatch]);
 
   const filteredNews = useSearchByNews(allNews, search.value);

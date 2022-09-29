@@ -1,11 +1,15 @@
-import { News } from './types';
+import { News, FetchNewsParams } from './types';
 
 const baseUrl = 'https://finnhub.io/api/v1/company-news';
+const token = 'c5g3koaad3id0d5nn48g';
 
-export const fetchNews = async () =>
-  fetch(`${baseUrl}?symbol=AAPL&from=2022-09-23&to=2022-09-26&token=c5g3koaad3id0d5nn48g`).then(
-    (response) => {
-      const res = response.json() as unknown;
-      return res as News[];
-    },
-  );
+export const fetchNews = async (params: FetchNewsParams): Promise<News[]> => {
+  const queryString = new URLSearchParams({ ...params, token }).toString();
+  const url = new URL(baseUrl);
+  url.search = queryString;
+
+  return fetch(url).then((response) => {
+    const res = response.json() as unknown;
+    return res as News[];
+  });
+};

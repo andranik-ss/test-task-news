@@ -1,20 +1,14 @@
-import { useEffect } from 'react';
 import { Box } from '@mui/material';
 
 import { useFormInput, usePagination, useSearchByNews } from 'hooks';
-import { useAppDispatch, useAppSelector } from 'store';
+import { useAppSelector } from 'store';
 import { NavLinks, AppBar, Search, CustomPagination } from 'components';
 import NewsCard from '../NewsCard';
-import { getNews, selectBookmarkedNews } from '../newsSlice';
+import { selectBookmarkedNews } from '../newsSlice';
 
 function Bookmarks() {
   const search = useFormInput();
-  const dispatch = useAppDispatch();
   const news = useAppSelector(selectBookmarkedNews);
-
-  useEffect(() => {
-    dispatch(getNews()).catch(console.error);
-  }, [dispatch]);
 
   const newsList = useSearchByNews(news, search.value);
   const { list, count, page } = usePagination(newsList, 8);

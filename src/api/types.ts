@@ -1,11 +1,17 @@
 export interface News {
-    category: string;
-    datetime: number;
-    headline: string;
-    id: number;
-    image: string;
-    related: string;
-    source: string;
-    summary: string;
-    url: string;
-  }
+  category: string;
+  datetime: number;
+  headline: string;
+  id: number;
+  image: string;
+  related: string;
+  source: string;
+  summary: string;
+  url: string;
+}
+
+export type FetchNewsParams = {
+  symbol: string;
+  from: string;
+  to: string;
+};

@@ -9,7 +9,7 @@ import {
   createSelector,
 } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
-import { News, fetchNews } from '../../api';
+import { News, fetchNews, FetchNewsParams } from '../../api';
 
 interface BookmarkedNews {
   id: News['id'];
@@ -36,7 +36,7 @@ const initialState: NewsState = newsAdapter.getInitialState({
   status: 'idle',
 });
 
-export const getNews = createAsyncThunk('news/getNews', fetchNews);
+export const getNews = createAsyncThunk('news/getNews', (params: FetchNewsParams) => fetchNews(params));
 
 export const newsSlice = createSlice({
   name: 'news',
