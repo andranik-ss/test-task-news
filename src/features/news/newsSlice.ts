@@ -92,4 +92,4 @@ export const selectBookmarkedNews = createSelector(
   },
 );
 
-export default newsSlice.reducer;
+export default newsSlice;
