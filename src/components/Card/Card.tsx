@@ -7,7 +7,7 @@ import { Label } from '../Label';
 import './Card.css';
 
 export interface CardProps {
-  image: string;
+  image?: string;
   url: string;
   related: string;
   headline: string;
@@ -50,9 +50,7 @@ export function Card(props: CardProps) {
   return (
     <StyledCard
       className={`card ${variant}`}
-      sx={{
-        backgroundImage: `url(${image})`,
-      }}
+      sx={image ? { backgroundImage: `url(${image})` } : {}}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Chip label={related} size="small" variant="outlined" sx={{ borderColor: 'white' }} />

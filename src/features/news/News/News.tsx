@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react';
 
-import { NavLinks, AppBar, Search, CustomPagination } from 'components';
+import { NavLinks, AppBar, Search, CustomPagination, SkeletonCard } from 'components';
 import { useFormInput, usePagination, useSearchByNews } from 'hooks';
 import { useAppDispatch, useAppSelector } from 'store';
 import { excludeLatestItemFromArray, getLatestItemFromArray } from 'utils';
 import NewsCard from '../NewsCard';
-import { getNews, selectAllNews } from '../newsSlice';
+import { getNews, selectAllNews, selectLoading } from '../newsSlice';
 
 import './News.css';
 
@@ -13,6 +13,7 @@ function News() {
   const search = useFormInput();
   const dispatch = useAppDispatch();
   const allNews = useAppSelector(selectAllNews);
+  const isLoading = useAppSelector(selectLoading);
 
   useEffect(() => {
     dispatch(
@@ -39,12 +40,13 @@ function News() {
       </AppBar>
       <div className="news-layout">
         <div className="latest">
-          {latestNews && <NewsCard id={latestNews?.id} label="latest news" />}
+          {latestNews && !isLoading && <NewsCard id={latestNews?.id} label="latest news" />}
+          {isLoading && <SkeletonCard variant="big-card" />}
         </div>
         <div className="list">
-          {list.map((item) => (
-            <NewsCard key={item.id} id={item.id} />
-          ))}
+          {isLoading
+            ? Array.from({ length: count.value }).map((_, index) => <SkeletonCard key={index} />)
+            : list.map((item) => <NewsCard key={item.id} id={item.id} />)}
         </div>
         <div className="pagination">
           {count.total > 1 && <CustomPagination count={count} currentPage={page} />}

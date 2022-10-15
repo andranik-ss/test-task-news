@@ -36,7 +36,9 @@ const initialState: NewsState = newsAdapter.getInitialState({
   status: 'idle',
 });
 
-export const getNews = createAsyncThunk('news/getNews', (params: FetchNewsParams) => fetchNews(params));
+export const getNews = createAsyncThunk('news/getNews', (params: FetchNewsParams) =>
+  fetchNews(params),
+);
 
 export const newsSlice = createSlice({
   name: 'news',
@@ -91,5 +93,7 @@ export const selectBookmarkedNews = createSelector(
     return news.filter((item) => bookmarks.includes(item.id));
   },
 );
+
+export const selectLoading = createSelector(selectNewsState, (state) => state.status === 'loading');
 
 export default newsSlice;
